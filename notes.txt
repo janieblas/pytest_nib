@@ -1,0 +1,45 @@
+!importat
+file name always starts or ends with test_/_test.py
+
+run test:   
+    >> pytest file_test.py
+
+Run tests in a directory:
+    >>pytest testing/
+
+To run a specific test within a module:
+    >>pytest tests/test_mod.py::test_func
+
+@pytest.fixture
+def db_data():
+
+# Test function that uses the fixture for data fetching
+def test_db_data(db_data):
+    assert db_data == {"data": "sample data"}
+
+
+@pytest.mark.parametrize("input,expected", [
+    (1, 2),
+    (5, 6),
+    (10, 11),
+    (-1, 0),
+])
+
+def test_increment_function(input, expected):
+    result = increment_function(input)
+    assert result == expected
+
+You can also combine multiple markers using logical operators (and, or, not) to execute 
+tests that meet certain criteria:
+pytest -m "smoke and not regression"  # Runs tests marked as 'smoke' but not as 'regression'
+
+Predefined Markers
+pytest provides some predefined markers that you can use to categorize your tests:
+
+@pytest.mark.skip: Skips a specific test.
+@pytest.mark.skip(reason="reason for skipping"): Skips a test with a specific reason.
+@pytest.mark.xfail: Marks a test as expected to fail.
+@pytest.mark.parametrize: Marks a test to run with different parameter sets.
+
+These predefined markers offer convenient ways to control the execution and behavior 
+of tests in pytest based on specific conditions or requirements.
